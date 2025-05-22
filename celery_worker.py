@@ -20,14 +20,12 @@ FILE_NAME = __name__
 
 celery = Celery(
     FILE_NAME,
-    broker="redis://localhost:6379/0",
-    backend="redis://localhost:6379/0",
+    broker="redis://default:yKhsyxqVEgsESHNTEWBcWuJrHPAtQnjK@redis.railway.internal:6379/0",
+    backend="redis://default:yKhsyxqVEgsESHNTEWBcWuJrHPAtQnjK@redis.railway.internal:6379/0",
 )
 
 sync_engine = create_engine(secret.SYNC_DATABASE_URL)
-SyncSessionLocal = sessionmaker(
-    autocommit=False, autoflush=False, bind=sync_engine
-)
+SyncSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=sync_engine)
 
 
 def get_exact_schedule_instance(

@@ -5,6 +5,6 @@
     "run": "python3.10"
   },
   "deploy": {
-    "startCommand": "hypercorn main:app --bind \"[::]:$PORT\""
+    "startCommand": "celery -A celery_worker.celery worker -B --loglevel=info"
   }
 }
